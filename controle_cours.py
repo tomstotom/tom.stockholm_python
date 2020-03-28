@@ -1,5 +1,4 @@
 
-
 """
 Contrôle de connaissances
 Tout est à faire en pur python respectez bien le nommage des variables
@@ -89,7 +88,7 @@ Tout est à faire en pur python respectez bien le nommage des variables
     ...         return next(self._iter)
     ...
     ...
-    >>> list(aller_a_paris(input_call=fake_input(['Barcelone', "Madrid", "Paris"]))) 
+    >>> list(aller_a_paris(input_call=fake_input(['Barcelone', "Madrid", "Paris"])))
     [3, 'Paris']
     >>> aller_a_paris(input_call=fake_input(['Barcelone', "paris"]))
     (2, 'Paris')
@@ -116,7 +115,7 @@ Tout est à faire en pur python respectez bien le nommage des variables
     False
     >>> italie.nom
     'Italie'
-    
+   
     - Créer un dictionnaire 'ville_pays' avec les capitales comme clefs et les
     instances de pays comme valeurs. Pour Paris, Berlin, Mardrid et Moscou.
     Il faut un visa pour aller en Russie.
@@ -126,67 +125,65 @@ Tout est à faire en pur python respectez bien le nommage des variables
     True
     >>> ville_pays['Berlin'].visa
     False
-    
+   
 """
-
+#Question 1
 def sup21(nombre):
     if nombre >= 21:
         return True
     else:
         return False
-    
-    
+   
+#Question 2  
 def pairs(liste):
-    liste_pair = [x for x in liste if x%2==0]
-    return liste_pair
+    a = []
+    for i in liste:
+        if i%2 == 0:
+            a.append(i)          
+    return a
 
+#Question 3
 def ajout4(liste):
     li = liste + [4]
     return li
 
-
-
+#Question 4
 def to_strings(dico):
     liste = []
     for key,value in dico.items():
         liste.append("{}:{}".format(key,value))
     return liste
 
+#Question 5
+def extremites(liste):
+    dico = []
+    for i in [0,1]:
+        dico.append(liste[i])
+    for i in [2,1]:
+        dico.append(liste[-i])
+    return dico
 
-def extremites(listee):
-        extrem=[]
-        extrem.append(listee[0])
-        extrem.append(listee[1])
-        extrem.append(listee[-2])
-        extrem.append(listee[-1])
-        return extrem
-
-
+#Question 6
 class Mot():
     def __init__(self,mot):
             self.mot = mot
-            
+           
     def comptelettre(self,lettre):
         i = 0
         for j in self.mot.upper():
             if j.upper() == lettre.upper():
                 i+=1
         return i
-            
-    
+           
+#Question 7  
 def tri_et_inverse(maliste):
-    
-    li = maliste[::-1]
-    l2 = maliste
-    l2.sort()
-    
-    
-    return l2,li
+   
+    liste_inverse = maliste[::-1]
+    liste_tri = sorted(maliste)  
+   
+    return liste_tri,liste_inverse
 
-
-
-
-
+#Question 8
 def aller_a_paris(input_call=input):
     # code a remplir
 
@@ -194,10 +191,27 @@ def aller_a_paris(input_call=input):
     # en fonction de saisie on continue a demander ou on renvoie 'Paris'
     # Au lieu d'utiliser input comme en cours vous appelez input_call
     # par défaut elle vaut input donc vous pouvez appeller
-    # aller_a_paris() pour tester a la main
-    while True:
-        return 0, 'Nulle Part'
-      
+    ville = input_call("Saisissez une déstination :")
+    i=1
+    while ville.lower() !="paris":
+        i+=1
+        ville = input_call("Saisissez une déstination :")
+       
+    return i,"Paris"
+
+#Question 9    
+ville_nom_pays = {'Paris':"France", 'Berlin':"Allemagne", 'Madrid':"Espagne", 'Moscou':"Russie"}
+
+
+#Question 10
+class Pays():
+     def __init__(self,nom,visa):
+        self.nom = nom
+        self.visa = visa
+
+
+ville_pays = {"Paris":Pays("France",False),"Berlin":Pays("Allemagne",False),"Madrid":Pays("Espagne",False),"Moscou":Pays("Russie",True),}
+
 if __name__ == "__main__":
     import doctest
     if True:
